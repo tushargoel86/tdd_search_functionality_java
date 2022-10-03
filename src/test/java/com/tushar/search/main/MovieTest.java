@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MovieTest {
 
@@ -32,6 +33,18 @@ public class MovieTest {
         List<String> movieList = movies.search("Va");
 
         assertEquals(2, movieList.size());
+        assertTrue(movieList.contains("Vancouver"));
+        assertTrue(movieList.contains("Valencia"));
+    }
+
+    @Test
+    @DisplayName("Should allow a search based on case insensitive")
+    void testForMovieNameWithCaseInsensitive() {
+        List<String> movieList = movies.search("va");
+
+        assertEquals(2, movieList.size());
+        assertTrue(movieList.contains("Vancouver"));
+        assertTrue(movieList.contains("Valencia"));
     }
 
     private void addData() {

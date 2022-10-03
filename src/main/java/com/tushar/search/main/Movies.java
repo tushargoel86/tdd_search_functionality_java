@@ -14,7 +14,10 @@ public class Movies {
     }
 
     public List<String> search(String word) {
-        return movieList.stream().filter(name -> name.startsWith(word)).collect(Collectors.toList());
+        if (word.length() < 2) return List.of();
+        return movieList.stream()
+                .filter(name -> name.substring(0, word.length()).equalsIgnoreCase(word))
+                .collect(Collectors.toList());
     }
 
     public void addMovie(String movie) {
