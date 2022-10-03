@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +23,7 @@ public class MovieTest {
     @Test
     @DisplayName("Should not return any movie when movie name length less than 2")
     void testForMovieNameLengthLessThanTwo() {
-        List<String> movieList = movies.search("a");
+        List<String> movieList = searchMovies("a");
 
         assertEquals(0, movieList.size());
     }
@@ -30,7 +31,7 @@ public class MovieTest {
     @Test
     @DisplayName("Should return 2 movies when movie name starts with Va")
     void testForMovieNameLengthEqualsToTwo() {
-        List<String> movieList = movies.search("Va");
+        List<String> movieList = searchMovies("Va");
 
         assertEquals(2, movieList.size());
         assertTrue(movieList.contains("Vancouver"));
@@ -40,7 +41,7 @@ public class MovieTest {
     @Test
     @DisplayName("Should allow a search based on case insensitive")
     void testForMovieNameWithCaseInsensitive() {
-        List<String> movieList = movies.search("va");
+        List<String> movieList = searchMovies("va");
 
         assertEquals(2, movieList.size());
         assertTrue(movieList.contains("Vancouver"));
@@ -53,4 +54,12 @@ public class MovieTest {
           "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul");
       movieList.stream().forEach(movies::addMovie);
     }
+
+    private List<String> searchMovies(String word) {
+        return movies.search(word)
+                .stream()
+                .map(Movie::name).toList();
+    }
+
+
 }

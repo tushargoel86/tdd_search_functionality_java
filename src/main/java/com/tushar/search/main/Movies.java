@@ -1,27 +1,26 @@
 package com.tushar.search.main;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Movies {
-    private Set<String> movieList;
+    public static final int MIN_VALUE = 2;
+    private final Set<Movie> movieList;
 
     public Movies() {
         this.movieList = new HashSet<>();
     }
 
-    public List<String> search(String word) {
-        if (word.length() < 2) return List.of();
+    public List<Movie> search(String word) {
+        if (word.length() < MIN_VALUE) return List.of();
         return movieList.stream()
-                .filter(name -> name.substring(0, word.length()).equalsIgnoreCase(word))
-                .collect(Collectors.toList());
+                .filter(d -> d.hasMovieStartedWith(word))
+                .toList();
     }
 
     public void addMovie(String movie) {
-        this.movieList.add(movie);
+        this.movieList.add(new Movie(movie));
     }
 
 }
