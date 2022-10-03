@@ -49,6 +49,7 @@ public class MovieTest {
     }
 
     @Test
+    @DisplayName("Should search for case-insensitive string")
     void testSearchForCaseInsensitiveLongString() {
         List<String> movieList = searchMovies("bang");
 
@@ -58,6 +59,7 @@ public class MovieTest {
     }
 
     @Test
+    @DisplayName("Should test for movie when word is part of the input")
     void testSearchForMovieWhenWordIsPartOfInput() {
         List<String> movieList = searchMovies("ape");
 
@@ -65,8 +67,16 @@ public class MovieTest {
         assertTrue(movieList.contains("Budapest"));
     }
 
+    @Test
+    @DisplayName("Should return all movies when search word is asterisk")
+    void testForAsterisk() {
+        List<String> movieList = searchMovies("*");
+
+        assertEquals(17, movieList.size());
+    }
     private void addData() {
-      List<String> movieList = List.of("Paris", "Budapest", "Skopje", "Rotterdam", "Valencia", "Vancouver",
+      List<String> movieList = List.of("Paris", "Budapest", "Skopje", "Rotterdam",
+               "Valencia", "Vancouver",
                 "Amsterdam", "Vienna", "Sydney", "New York City", "London",
           "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul", "Bangalore");
       movieList.forEach(movies::addMovie);
