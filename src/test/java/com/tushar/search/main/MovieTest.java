@@ -48,10 +48,19 @@ public class MovieTest {
         assertTrue(movieList.contains("Valencia"));
     }
 
+    @Test
+    void testSearchForCaseInsensitiveLongString() {
+        List<String> movieList = searchMovies("bang");
+
+        assertEquals(2, movieList.size());
+        assertTrue(movieList.contains("Bangkok"));
+        assertTrue(movieList.contains("Bangalore"));
+    }
+
     private void addData() {
       List<String> movieList = List.of("Paris", "Budapest", "Skopje", "Rotterdam", "Valencia", "Vancouver",
                 "Amsterdam", "Vienna", "Sydney", "New York City", "London",
-          "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul");
+          "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul", "Bangalore");
       movieList.stream().forEach(movies::addMovie);
     }
 
