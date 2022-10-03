@@ -2,7 +2,7 @@ package com.tushar.search.main;
 
 import java.util.Objects;
 
-public record Movie(String name) {
+public record City(String name) {
 
     @Override
     public String name() {
@@ -13,7 +13,7 @@ public record Movie(String name) {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Movie movie = (Movie) o;
+        City movie = (City) o;
         return Objects.equals(name, movie.name);
     }
 
