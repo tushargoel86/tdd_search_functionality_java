@@ -22,7 +22,7 @@ public record Movie(String name) {
         return Objects.hash(name);
     }
 
-    public boolean hasMovieStartedWith(String word) {
-        return name.substring(0, word.length()).equalsIgnoreCase(word);
+    public boolean hasNameContains(String word) {
+        return name.toLowerCase().contains(word.toLowerCase());
     }
 }

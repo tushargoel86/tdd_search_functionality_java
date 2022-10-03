@@ -15,7 +15,7 @@ public class Movies {
     public List<Movie> search(String word) {
         if (word.length() < MIN_VALUE) return List.of();
         return movieList.stream()
-                .filter(d -> d.hasMovieStartedWith(word))
+                .filter(d -> d.hasNameContains(word))
                 .toList();
     }
 

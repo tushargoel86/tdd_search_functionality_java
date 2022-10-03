@@ -57,11 +57,19 @@ public class MovieTest {
         assertTrue(movieList.contains("Bangalore"));
     }
 
+    @Test
+    void testSearchForMovieWhenWordIsPartOfInput() {
+        List<String> movieList = searchMovies("ape");
+
+        assertEquals(1, movieList.size());
+        assertTrue(movieList.contains("Budapest"));
+    }
+
     private void addData() {
       List<String> movieList = List.of("Paris", "Budapest", "Skopje", "Rotterdam", "Valencia", "Vancouver",
                 "Amsterdam", "Vienna", "Sydney", "New York City", "London",
           "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul", "Bangalore");
-      movieList.stream().forEach(movies::addMovie);
+      movieList.forEach(movies::addMovie);
     }
 
     private List<String> searchMovies(String word) {
